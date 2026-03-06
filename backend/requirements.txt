@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+motor
+python-jose[cryptography]
+passlib[bcrypt]
+scikit-learn
+pandas
+joblib
+python-dotenv
+python-multipart
+email-validator
