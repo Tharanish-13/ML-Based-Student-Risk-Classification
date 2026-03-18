@@ -11,7 +11,9 @@ const Register = () => {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'student'
+        role: 'student',
+        mobile_no: '',
+        parent_mobile_no: ''
     });
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +34,9 @@ const Register = () => {
         }
 
         try {
-            const data = await register(formData.name, formData.email, formData.password, formData.role);
+            // Remove confirmPassword, just send the rest
+            const { confirmPassword, ...submitData } = formData;
+            const data = await register(submitData);
             if (data.role === 'staff' || data.role === 'admin') {
                 navigate('/dashboard');
             } else {
@@ -136,6 +140,48 @@ const Register = () => {
                                 />
                             </div>
                         </div>
+
+                        {formData.role === 'student' ? (
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-slate-700 ml-1">Student Mobile</label>
+                                    <input
+                                        type="tel"
+                                        name="mobile_no"
+                                        value={formData.mobile_no}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                                        placeholder="Mobile Number"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-medium text-slate-700 ml-1">Parent Mobile</label>
+                                    <input
+                                        type="tel"
+                                        name="parent_mobile_no"
+                                        value={formData.parent_mobile_no}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm"
+                                        placeholder="Parent Number"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-slate-700 ml-1">Staff Mobile</label>
+                                <input
+                                    type="tel"
+                                    name="mobile_no"
+                                    value={formData.mobile_no}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
+                                    placeholder="Your Mobile Number"
+                                    required
+                                />
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">

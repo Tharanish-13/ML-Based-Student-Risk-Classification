@@ -16,6 +16,52 @@
   --text-muted: 215 16% 47%;
 }
 
+.dark {
+  --primary: 245 85% 70%;
+  --primary-dark: 245 85% 80%;
+  --secondary: 160 84% 50%;
+  --background: 222 47% 11%;
+  --surface: 215 28% 17%;
+  --text-main: 220 30% 98%;
+  --text-muted: 215 16% 70%;
+}
+
+.dark body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--text-main));
+}
+
+.dark .bg-white {
+  background-color: hsl(var(--surface)) !important;
+  color: hsl(var(--text-main)) !important;
+  border-color: rgba(255,255,255,0.05) !important;
+}
+
+.dark .text-gray-800, .dark .text-gray-900, .dark .text-gray-700,
+.dark .text-slate-800, .dark .text-slate-900, .dark .text-slate-700 {
+  color: hsl(var(--text-main)) !important;
+}
+
+.dark .text-gray-500, .dark .text-gray-600,
+.dark .text-slate-500, .dark .text-slate-600 {
+  color: hsl(var(--text-muted)) !important;
+}
+
+.dark .bg-gray-50, .dark .bg-slate-50, .dark .bg-slate-100 {
+  background-color: hsla(215, 28%, 20%, 1) !important;
+  border-color: rgba(255,255,255,0.05) !important;
+}
+
+.dark input, .dark select, .dark textarea {
+  background-color: hsla(215, 28%, 15%, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: hsl(var(--text-main)) !important;
+}
+
+.dark input:focus, .dark select:focus, .dark textarea:focus {
+  background-color: hsla(215, 28%, 15%, 1) !important;
+}
+
 body {
   font-family: 'Outfit', sans-serif;
   background-color: hsl(var(--background));

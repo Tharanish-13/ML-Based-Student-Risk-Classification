@@ -5,10 +5,6 @@ import joblib
 import os
 import numpy as np
 
-# Create dummy data
-# Features: attendance (0-100), marks (0-100), assignments (0-10), study_hours (0-10)
-# Risk: 0 (Low), 1 (Medium), 2 (High)
-
 def generate_dummy_data(n_samples=1000):
     np.random.seed(42)
     data = []

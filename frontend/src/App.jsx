@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ChangePassword from './pages/ChangePassword';
 import Dashboard from './pages/Dashboard';
 import StudentDashboard from './pages/StudentDashboard';
 import StudentList from './pages/StudentList';
@@ -16,6 +18,9 @@ import StaffAlerts from './pages/StaffAlerts';
 import BatchUpload from './pages/BatchUpload';
 import StudentNotifications from './pages/StudentNotifications';
 import StudentResources from './pages/StudentResources';
+import Analytics from './pages/Analytics';
+import Support from './pages/Support';
+import Settings from './pages/Settings';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -44,6 +49,7 @@ const AppRoutes = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/change-password" element={<ChangePassword />} />
 
       <Route element={<DashboardLayout />}>
         {/* Staff/Admin Routes */}
@@ -112,6 +118,23 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } />
 
+        {/* Global/Shared App Pages */}
+        <Route path="/analytics" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin']}>
+            <Analytics />
+          </ProtectedRoute>
+        } />
+        <Route path="/support" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin', 'student']}>
+            <Support />
+          </ProtectedRoute>
+        } />
+        <Route path="/settings" element={
+          <ProtectedRoute allowedRoles={['staff', 'admin', 'student']}>
+            <Settings />
+          </ProtectedRoute>
+        } />
+
         <Route path="/profile" element={
           <ProtectedRoute allowedRoles={['staff', 'admin', 'student']}>
             <UserProfile />
@@ -123,6 +146,16 @@ const AppRoutes = () => {
 };
 
 const App = () => {
+  useEffect(() => {
+    const saved = localStorage.getItem('userSettings');
+    if (saved) {
+      const settings = JSON.parse(saved);
+      if (settings.darkMode) {
+        document.documentElement.classList.add('dark');
+      }
+    }
+  }, []);
+
   return (
     <AuthProvider>
       <Router>

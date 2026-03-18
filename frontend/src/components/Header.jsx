@@ -74,6 +74,9 @@ const Header = () => {
                                         <Link to="/add-student" className={getNavLinkClass('/add-student')}>
                                             <Users size={16} /> Add Student
                                         </Link>
+                                        <Link to="/analytics" className={getNavLinkClass('/analytics')}>
+                                            <PieChart size={16} /> Analytics
+                                        </Link>
                                     </>
                                 )}
                                 {user.role === 'admin' && (
@@ -143,6 +146,32 @@ const Header = () => {
                                                 <div>
                                                     <p className="font-medium">My Profile</p>
                                                     <p className="text-xs text-slate-400">Account settings</p>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to="/settings"
+                                                onClick={() => setIsProfileOpen(false)}
+                                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors group mt-1"
+                                            >
+                                                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
+                                                    <Settings size={16} />
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium">Settings</p>
+                                                    <p className="text-xs text-slate-400">App preferences</p>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to="/support"
+                                                onClick={() => setIsProfileOpen(false)}
+                                                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 transition-colors group mt-1"
+                                            >
+                                                <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
+                                                    <HelpCircle size={16} />
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium">Support</p>
+                                                    <p className="text-xs text-slate-400">Get Help</p>
                                                 </div>
                                             </Link>
                                         </div>

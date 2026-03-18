@@ -16,10 +16,17 @@ class UserCreate(BaseModel):
     role: Role = Role.STUDENT
     department: Optional[str] = None
     year: Optional[str] = None
+    mobile_no: Optional[str] = None
+    parent_mobile_no: Optional[str] = None
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+class ChangePasswordRequest(BaseModel):
+    email: EmailStr
+    old_password: str
+    new_password: str
 
 class UserInDB(BaseModel):
     name: str
@@ -28,6 +35,8 @@ class UserInDB(BaseModel):
     role: Role = Role.STUDENT
     department: Optional[str] = None
     year: Optional[str] = None
+    mobile_no: Optional[str] = None
+    parent_mobile_no: Optional[str] = None
 
 class Token(BaseModel):
     access_token: str

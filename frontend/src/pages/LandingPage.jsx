@@ -21,7 +21,7 @@ const LandingPage = () => {
                     <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                         <div className="w-full lg:w-1/2 text-center lg:text-left animate-fade-in-up">
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-indigo-100/50 text-indigo-700 text-sm font-bold mb-8 shadow-sm hover:shadow-md transition-all">
-                                <span className="relative flex h-2.5 w-5.5">
+                                <span className="relative flex h-2.5 w-2.5">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-600"></span>
                                 </span>

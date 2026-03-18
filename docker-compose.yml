@@ -17,12 +17,12 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGODB_URI: "mongodb://mongo:27017/"
+      # MONGODB_URI: "mongodb://mongo:27017/"
       JWT_SECRET: "your_jwt_secret_key_change_this"
       # If using external Mongo Atlas as requested, override this env var.
       # But for local docker-compose, using the mongo service is preferred.
       # To use the Atlas URI provided in prompt, uncomment below:
-      # MONGODB_URI: "mongodb+srv://stark_tharanish_admin:stark_talez@cluster0.nwu4iqm.mongodb.net/?appName=Cluster0"
+      MONGODB_URI: "mongodb+srv://stark_tharanish_admin:stark_talez@cluster0.nwu4iqm.mongodb.net/?appName=Cluster0"
 
   frontend:
     build: ./frontend
@@ -32,7 +32,7 @@ services:
     depends_on:
       - backend
     environment:
-      VITE_API_URL: "http://localhost:8000"
+      VITE_API_URL: "http://backend:8000"
 
 volumes:
   mongo_data:

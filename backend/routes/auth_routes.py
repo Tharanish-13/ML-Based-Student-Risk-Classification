@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from pydantic import BaseModel
 from typing import Optional
-from models import UserCreate, UserLogin, Token, UserInDB
+from models import UserCreate, UserLogin, Token, UserInDB, ChangePasswordRequest
 from database import user_collection
 from auth import get_password_hash, verify_password, create_access_token
 from bson import ObjectId
@@ -25,6 +25,8 @@ async def register(user: UserCreate):
         "role": user.role,
         "department": user.department,
         "year": user.year,
+        "mobile_no": user.mobile_no,
+        "parent_mobile_no": user.parent_mobile_no,
         "created_at": datetime.utcnow()
     }
     
@@ -99,3 +101,20 @@ async def update_user_me(user_update: UserUpdate, current_user: dict = Depends(g
             "year": updated_user.get("year")
         }
     }
+
+@router.post("/change-password")
+async def change_password(request: ChangePasswordRequest):
+    db_user = await user_collection.find_one({"email": request.email})
+    if not db_user or not verify_password(request.old_password, db_user["hashed_password"]):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Incorrect email or old password"
+        )
+    
+    hashed_new_password = get_password_hash(request.new_password)
+    await user_collection.update_one(
+        {"email": request.email},
+        {"$set": {"hashed_password": hashed_new_password}}
+    )
+    
+    return {"message": "Password updated successfully"}

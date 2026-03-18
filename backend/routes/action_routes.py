@@ -20,7 +20,18 @@ async def send_email_endpoint(request: EmailRequest, current_user: dict = Depend
     #     raise HTTPException(status_code=403, detail="Not authorized to send emails")
     
     success = send_email(request.to_email, request.subject, request.content)
-    if success:
+    
+    # Check for parent_mobile_no to send SMS
+    student = await database.user_collection.find_one({"email": request.to_email})
+    sms_sent = False
+    
+    if student and student.get("parent_mobile_no"):
+        parent_mobile = student.get("parent_mobile_no")
+        # Simulate sending SMS
+        print(f"\n[{datetime.utcnow().isoformat()}] SMS ALERT SENT TO {parent_mobile}: {request.subject}\n")
+        sms_sent = True
+
+    if success or sms_sent:
         # Create notification for the student
         notification = {
             "student_email": request.to_email,
@@ -30,9 +41,14 @@ async def send_email_endpoint(request: EmailRequest, current_user: dict = Depend
             "is_read": False
         }
         await database.notification_collection.insert_one(notification)
-        return {"message": "Email sent and notification created"}
+        
+        msg = "Email sent and notification created."
+        if sms_sent:
+            msg += " SMS alert sent to parent."
+            
+        return {"message": msg}
     else:
-        raise HTTPException(status_code=500, detail="Failed to send email")
+        raise HTTPException(status_code=500, detail="Failed to send email or SMS")
 
 @router.get("/notifications")
 async def get_notifications(current_user: dict = Depends(get_current_user)):

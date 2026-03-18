@@ -41,11 +41,11 @@ export const AuthProvider = ({ children }) => {
         return res.data;
     };
 
-    const register = async (name, email, password, role) => {
-        const res = await api.post('/register', { name, email, password, role });
+    const register = async (userData) => {
+        const res = await api.post('/register', userData);
         localStorage.setItem('token', res.data.access_token);
         localStorage.setItem('role', res.data.role);
-        setUser({ email, role: res.data.role, name: res.data.name });
+        setUser({ email: userData.email, role: res.data.role, name: res.data.name });
         return res.data;
     };
 
