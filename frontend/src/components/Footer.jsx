@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Github, Twitter, Linkedin, Heart } from 'lucide-react';
+import { Github, Briefcase, Linkedin, Heart } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -21,20 +21,20 @@ const Footer = () => {
                     <div>
                         <h4 className="font-bold text-slate-800 mb-4">Product</h4>
                         <ul className="space-y-2 text-sm text-slate-500">
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Features</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Security</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Pricing</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Updates</Link></li>
+                            <li><a href="/#features" className="hover:text-indigo-600 transition-colors">Features</a></li>
+                            <li><a href="/#features" className="hover:text-indigo-600 transition-colors">Security</a></li>
+                            <li><Link to="/register" className="hover:text-indigo-600 transition-colors">Pricing</Link></li>
+                            <li><a href="https://github.com/Tharanish-13" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Updates</a></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className="font-bold text-slate-800 mb-4">Company</h4>
                         <ul className="space-y-2 text-sm text-slate-500">
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">About</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Careers</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Blog</Link></li>
-                            <li><Link to="#" className="hover:text-indigo-600 transition-colors">Contact</Link></li>
+                            <li><a href="/#about" className="hover:text-indigo-600 transition-colors">About</a></li>
+                            <li><Link to="/" className="hover:text-indigo-600 transition-colors">Careers</Link></li>
+                            <li><a href="https://github.com/Tharanish-13/ML-Based-Student-Risk-Classification" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Blog</a></li>
+                            <li><a href="https://www.linkedin.com/in/tharanish-j/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 transition-colors">Contact</a></li>
                         </ul>
                     </div>
 
@@ -43,9 +43,9 @@ const Footer = () => {
                         <p className="text-sm text-slate-500 mb-2">Developed by Tharanish</p>
                         <p className="text-sm text-slate-500 mb-4">ML-Based Student Risk System</p>
                         <div className="flex gap-4">
-                            <a href="#" className="text-slate-400 hover:text-indigo-600 transition-colors transform hover:scale-110"><Github size={20} /></a>
-                            <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors transform hover:scale-110"><Twitter size={20} /></a>
-                            <a href="#" className="text-slate-400 hover:text-blue-700 transition-colors transform hover:scale-110"><Linkedin size={20} /></a>
+                            <a href="https://github.com/Tharanish-13" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors transform hover:scale-110" title="GitHub"><Github size={20} /></a>
+                            <a href="https://your-portfolio-link.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-emerald-500 transition-colors transform hover:scale-110" title="Portfolio"><Briefcase size={20} /></a>
+                            <a href="https://www.linkedin.com/in/tharanish-j/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-700 transition-colors transform hover:scale-110" title="LinkedIn"><Linkedin size={20} /></a>
                         </div>
                     </div>
                 </div>

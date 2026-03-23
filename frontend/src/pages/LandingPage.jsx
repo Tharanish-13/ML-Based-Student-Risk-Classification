@@ -158,7 +158,7 @@ const LandingPage = () => {
             </section>
 
             {/* Why Choose Us */}
-            <section className="py-32 bg-slate-50 relative overflow-hidden">
+            <section id="about" className="py-32 bg-slate-50 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-indigo-50/50 to-transparent -z-10"></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="flex flex-col lg:flex-row items-center gap-16">
